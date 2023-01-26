@@ -41,7 +41,8 @@ const EmployeePage = () => {
 
     const createEmployee = async () => {
         try {
-            const request = await axios.post<IEmployee>(`${apiurl}/api/employee`, { name, address, telephone, employeeTypeId });
+            const employmentDate = new Date();
+            const request = await axios.post<IEmployee>(`${apiurl}/api/employee`, { name, address, telephone, employeeTypeId, employmentDate });
             const data = request.data;
             setEmployees((prev) => [...prev, data]);
         } catch (err) {
