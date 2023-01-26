@@ -1,8 +1,13 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import routes from "./routes"
+
 function App() {
   return (
-    <div className="App">
-      <h1>Initial struct</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
+      </Routes>
+    </BrowserRouter>
   )
 }
 
