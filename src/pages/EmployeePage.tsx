@@ -14,27 +14,27 @@ const EmployeePage = () => {
     const [address, setAddress] = useState("");
     const [employeeTypeId, setEmployeeTypeId] = useState(0);
 
+    const loadEmployees = async () => {
+        try {
+            const request = await axios.get<IEmployee[]>(`${apiurl}/api/employee`);
+            const data = request.data;
+            setEmployees(data);
+        } catch (err) {
+            alert("An error has ocurred and employees was not loaded");
+        }
+    }
+
+    const loadEmployeeTypes = async () => {
+        try {
+            const request = await axios.get<IEmployeeType[]>(`${apiurl}/api/employeetype`);
+            const data = request.data;
+            setEmployeeTypes(data);
+        } catch (err) {
+            alert("An error has ocurred and employees was not loaded");
+        }
+    }
+
     useEffect(() => {
-        const loadEmployees = async () => {
-            try {
-                const request = await axios.get<IEmployee[]>(`${apiurl}/api/employee`);
-                const data = request.data;
-                setEmployees(data);
-            } catch (err) {
-                alert("An error has ocurred and employees was not loaded");
-            }
-        }
-
-        const loadEmployeeTypes = async () => {
-            try {
-                const request = await axios.get<IEmployeeType[]>(`${apiurl}/api/employeetype`);
-                const data = request.data;
-                setEmployeeTypes(data);
-            } catch (err) {
-                alert("An error has ocurred and employees was not loaded");
-            }
-        }
-
         loadEmployees();
         loadEmployeeTypes();
     }, []);
@@ -44,7 +44,7 @@ const EmployeePage = () => {
             const employmentDate = new Date();
             const request = await axios.post<IEmployee>(`${apiurl}/api/employee`, { name, address, telephone, employeeTypeId, employmentDate });
             const data = request.data;
-            setEmployees((prev) => [...prev, data]);
+            await loadEmployees();
         } catch (err) {
             alert("An error has ocurred and employees was not created");
         }

@@ -25,6 +25,9 @@ const EmployeeTable: FC<props> = ({ employees }) => {
                         Address
                     </th>
                     <th>
+                        Employee Type
+                    </th>
+                    <th>
                         Employment Date
                     </th>
                 </tr>
@@ -36,6 +39,7 @@ const EmployeeTable: FC<props> = ({ employees }) => {
                         <td>{e.name}</td>
                         <td>{e.telephone}</td>
                         <td>{e.address}</td>
+                        <td>{e.employeeType}</td>
                         <td>{format(new Date(e.employmentDate), "yyyy-MM-dd")}</td>
                     </tr>
                 ))}
