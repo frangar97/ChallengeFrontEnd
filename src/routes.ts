@@ -1,5 +1,5 @@
 import { IRoute } from "./interfaces/IRoute";
-import { EmployeePage, ShopPage } from "./pages";
+import { EmployeePage, ShopEmployeePage, ShopPage } from "./pages";
 
 const routes: IRoute[] = [
     {
@@ -15,7 +15,7 @@ const routes: IRoute[] = [
     {
         name: "ShopEmployee",
         path: "/shopemployee",
-        Component: ShopPage
+        Component: ShopEmployeePage
     },
 ];
 
