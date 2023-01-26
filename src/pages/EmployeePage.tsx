@@ -42,8 +42,8 @@ const EmployeePage = () => {
     const createEmployee = async () => {
         try {
             const employmentDate = new Date();
-            const request = await axios.post<IEmployee>(`${apiurl}/api/employee`, { name, address, telephone, employeeTypeId, employmentDate });
-            const data = request.data;
+            await axios.post<IEmployee>(`${apiurl}/api/employee`, { name, address, telephone, employeeTypeId, employmentDate });
+            alert("Register created with success");
             await loadEmployees();
         } catch (err) {
             alert("An error has ocurred and employees was not created");
